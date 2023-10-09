@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 const minimum = 1;
 const maximum = 100;
-const maxAttempts = 5;
+const maxAttempts = 15;
 let totalAttempts = 0;
 let rounds = 0;
 let wins = 0;
@@ -21,7 +21,7 @@ async function playRound() {
             {
                 type: "input",
                 name: "guess",
-                message: `Attempt ${attempts + 1}: Enter your guess: `,
+                message: chalk.bgMagentaBright `Attempt ${attempts + 1}: Enter your guess: `,
                 validate: (value) => {
                     const number = parseInt(value, 10);
                     if (isNaN(number) || number < minimum || number > maximum) {
@@ -35,7 +35,7 @@ async function playRound() {
         attempts++;
         totalAttempts++;
         if (guess === secretNumber) {
-            console.log(`Congratulations! You guessed the number in ${attempts} attempts.`);
+            console.log(chalk.blueBright(`Congratulations! You guessed the number in ${attempts} attempts.`));
             wins++;
             break;
         }
